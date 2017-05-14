@@ -1,0 +1,23 @@
+@*
+  This is the single page that will be served by our MVC application that will launch our SPAR application
+*@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*
+  The app element referenced here points to our app component in Angular
+  We're also launching our compiled transpiled minified client js to launch our application
+  asp-prerender-module ==> fires off the service side prerendering of our application to speed application launch
+*@
+<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+
+@*
+  
+*@
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
