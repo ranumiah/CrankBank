@@ -8,13 +8,15 @@ import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app/app.component'
 import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/shared/header/header.component';
 
 // The NG module decorator, which is a specific type of function that allows us to attach metadata to our app module
 @NgModule({
     bootstrap: [ AppComponent ], // This tells us that we're gonna be launching our app component as our Startup Component
     declarations: [ // This is a list of the components that we're gonna reference inside our module
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        HeaderComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
