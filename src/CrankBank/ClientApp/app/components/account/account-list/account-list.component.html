@@ -5,8 +5,10 @@
         <h3 class="panel-title">Cash Accounts</h3>
     </div>
     <div class="panel-body">
-        <account-summary></account-summary>
-        <account-summary></account-summary>
+        <!--if cashAccounts is undefined then show this element-->
+        <p *ngIf="!cashAccounts"> No Cash Accounts</p>
+        <!--Loop through every account in cashAccounts, and repeat these element for every instance it discovers within the cash accounts-->
+        <account-summary *ngFor="let account of cashAccounts" [accountSummary]="account"></account-summary>
     </div>
 </div>
 <div class="panel panel-default panel-primary">
@@ -14,6 +16,9 @@
         <h3 class="panel-title">Credit Accounts</h3>
     </div>
     <div class="panel-body">
-        <account-summary></account-summary>
+        <!--if creditAccounts is undefined then show this element-->
+        <p *ngIf="!creditAccounts"> No Credit Accounts</p>
+        <!--Loop through every account in creditAccounts, and repeat these element for every instance it discovers within the cash accounts-->
+        <account-summary *ngFor="let account of creditAccounts" [accountSummary]="account"></account-summary>
     </div>
 </div>

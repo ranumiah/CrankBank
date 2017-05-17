@@ -1,6 +1,7 @@
 ﻿
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountSummary } from '../../shared/account-summary.type';
 
 @Component({
     selector: 'account-summary',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./account-summary.component.css']
 })
 export class AccountSummaryComponent {
+    @Input() accountSummary: AccountSummary
     // This is short hand for doing the following steps:
     // private router: Router;  we are declaring a variable
     // this.router = router; we are assigning the variable
@@ -16,7 +18,7 @@ export class AccountSummaryComponent {
 
     navigateToDetail() {
         // The router component is actually a core part of the system, which we import and inject it in
-        this.router.navigate(["detail", "1234"])
+        this.router.navigate(["detail", this.accountSummary.accountNumber])
     }
 }
     
