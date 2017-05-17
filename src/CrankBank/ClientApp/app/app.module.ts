@@ -12,6 +12,8 @@ import { AccountSummaryComponent } from './components/account/account-summary/ac
 import { AccountDetailComponent } from './components/account/account-detail/account-detail.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FormatAccountNumberPipe } from './components/shared/format-account-number.pipe';
+import { AccountActivityComponent } from './components/account/acccount-activity/account-activity.component';
+import { AccountService } from './components/shared/account.service';
 
 // The NG module decorator, which is a specific type of function that allows us to attach metadata to our app module
 @NgModule({
@@ -22,7 +24,8 @@ import { FormatAccountNumberPipe } from './components/shared/format-account-numb
         AccountDetailComponent,
         AccountSummaryComponent,
         HeaderComponent,
-        FormatAccountNumberPipe
+        FormatAccountNumberPipe,
+        AccountActivityComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
@@ -33,7 +36,9 @@ import { FormatAccountNumberPipe } from './components/shared/format-account-numb
             { path: 'detail/:id', component: AccountDetailComponent },
             { path: '**', redirectTo: 'account' }
         ])
-    ]
+    ],
+    // This provide the ability to inject Services in the application
+    providers: [AccountService]
 })
 export class AppModule {
 }

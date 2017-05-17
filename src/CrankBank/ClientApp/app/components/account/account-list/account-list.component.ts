@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { AccountSummary } from '../../shared/account-summary.type';
 import { AccountType } from '../../shared/account-type.enum';
+import { AccountService } from '../../shared/account.service';
 
 @Component({
     selector: 'account-list',
@@ -12,13 +13,15 @@ export class AccountListComponent {
     cashAccounts: AccountSummary[];
     creditAccounts: AccountSummary[];
 
-    constructor() {
-        this.cashAccounts = [
-            { accountNumber: "123-234-4567", balance: 1234.56, name: "Checking", type: AccountType.Checking },
-            { accountNumber: "987-765-4321", balance: 5234.56, name: "Savings", type: AccountType.Savings }
-        ];
-        this.creditAccounts = [
-            { accountNumber: "111-333-5555", balance: 5234.56, name: "Credit", type: AccountType.Credit }
-        ];
+    // Angular understand how to inject our service because in the app.module.ts we specified this providers: [AccountService]
+    constructor(private accountService: AccountService) {
+    }
+
+    ngOnInit() {
+        this.accountService.getAccountSummaries()
+            .then(accounts => {
+                this.cashAccounts = accounts.filter(v => v.type === AccountType.Checking || v.type === AccountType.Savings);
+                this.creditAccounts = accounts.filter(v => v.type === AccountType.Credit);
+            });
     }
 }
