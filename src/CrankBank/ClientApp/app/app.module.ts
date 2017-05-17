@@ -27,6 +27,8 @@ import { HeaderComponent } from './components/shared/header/header.component';
         RouterModule.forRoot([ // Path Configuration that set up the Angular Routing
             { path: '', redirectTo: 'account', pathMatch: 'full' },
             { path: 'account', component: AccountListComponent },
+            //This is a parameterised route, which can be accessed by AccountDetailComponent
+            { path: 'detail/:id', component: AccountDetailComponent },
             { path: '**', redirectTo: 'account' }
         ])
     ]
